@@ -1,5 +1,5 @@
 module Ribose
-  module Cli
+  module CLI
     VERSION = "0.1.0".freeze
   end
 end

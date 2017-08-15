@@ -6,7 +6,7 @@ require "ribose/cli/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "ribose-cli"
-  spec.version       = Ribose::Cli::VERSION
+  spec.version       = Ribose::CLI::VERSION
   spec.authors       = ["Ribose Inc."]
   spec.email         = ["operations@ribose.com"]
 
@@ -20,6 +20,9 @@ Gem::Specification.new do |spec|
 
   spec.require_paths = ["lib"]
   spec.bindir        = "bin"
+  spec.executables   = "ribose"
+
+  spec.add_dependency "thor", "~> 0.19.4"
 
   spec.add_development_dependency "bundler", "~> 1.14"
   spec.add_development_dependency "rake", "~> 10.0"

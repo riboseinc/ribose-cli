@@ -1,7 +1,12 @@
+require "thor"
+
 require "ribose/cli/version"
+require "ribose/cli/command"
 
 module Ribose
-  module Cli
-    # Your code goes here...
+  module CLI
+    def self.start(arguments)
+      Ribose::CLI::Command.start(arguments)
+    end
   end
 end
