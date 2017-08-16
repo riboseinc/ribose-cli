@@ -1,5 +1,8 @@
 require "thor"
+require "ribose"
 
+require "ribose/cli/auth"
+require "ribose/cli/util"
 require "ribose/cli/version"
 require "ribose/cli/command"
 

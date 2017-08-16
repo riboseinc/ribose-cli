@@ -29,6 +29,32 @@ $ gem install ribose-cli
 
 ## Usage
 
+To start with, we kept it pretty simple, clone this repo and then configure the
+following environment variables to get everything working.
+
+```sh
+export RIBOSE_API_TOKEN=YOUR_SECRET_API_TOKEN
+export RIBOSE_USER_EMAIL=YOUR_EMAIL_FOR_RIBOSE
+```
+
+### Spaces
+
+The `space` command retrieve space related resources, please use the `help`
+command to see what's sub-commands are available.
+
+```sh
+ribose help space
+```
+
+#### Listing spaces
+
+To list out the spaces, please use the `list` command, by default it will print
+out the basic information in tabular format.
+
+```sh
+ribose space list
+```
+
 ## Development
 
 We are following Sandi Metz's Rules for this gem, you can read the
