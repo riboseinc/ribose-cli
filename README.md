@@ -55,6 +55,13 @@ out the basic information in tabular format.
 ribose space list
 ```
 
+This interface also has support `json` format, if we want the output to be in
+`json` then we can use the following
+
+```sh
+ribose space list --format json
+```
+
 ## Development
 
 We are following Sandi Metz's Rules for this gem, you can read the

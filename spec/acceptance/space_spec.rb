@@ -2,17 +2,28 @@ require "spec_helper"
 
 RSpec.describe "Ribose Space" do
   describe "Listing spaces" do
-    it "retrieves and list out user spaces" do
-      command = %w(space list)
-      stub_listing_ribose_spaces
+    context "default option" do
+      it "retrieves user spaces in default format" do
+        command = %w(space list)
 
-      Ribose::CLI.start(command)
+        stub_ribose_space_list_api
+        output = capture_stdout { Ribose::CLI.start(command) }
 
-      expect(Ribose::Space).to have_received(:all)
+        expect(output).to match(/Work/)
+        expect(output).to match(/123456789/)
+      end
     end
-  end
 
-  def stub_listing_ribose_spaces
-    allow(Ribose::Space).to receive(:all).and_return([])
+    context "with format option" do
+      it "retrieves user spaces in specified format" do
+        command = %w(space list --format json)
+
+        stub_ribose_space_list_api
+        output = capture_stdout { Ribose::CLI.start(command) }
+
+        expect(output).to match(/"name":"Work"/)
+        expect(output).to match(/"id":"123456789"/)
+      end
+    end
   end
 end
