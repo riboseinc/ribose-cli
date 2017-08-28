@@ -1,0 +1,3 @@
+---
+:api_token: SECRET_TOKEN
+:user_email: user-one@example.com

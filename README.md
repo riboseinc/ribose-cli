@@ -29,12 +29,14 @@ $ gem install ribose-cli
 
 ## Usage
 
-To start with, we kept it pretty simple, clone this repo and then configure the
-following environment variables to get everything working.
+### Configure
+
+To start with, we kept it pretty simple, install this gem & then configure your
+API Token and email using the following interface, This will store your Ribose
+configuration as `.riboserc` in the home directory.
 
 ```sh
-export RIBOSE_API_TOKEN=YOUR_SECRET_API_TOKEN
-export RIBOSE_USER_EMAIL=YOUR_EMAIL_FOR_RIBOSE
+ribose config --token="YOUR_API_TOKEN" --email="youremail@example.com"
 ```
 
 ### Spaces

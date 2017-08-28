@@ -12,4 +12,11 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.before :all do
+    Ribose.configure do |ribose_config|
+      ribose_config.api_token = ENV["RIBOSE_API_TOKEN"] || "SECRET_TOKEN"
+      ribose_config.user_email = ENV["RIBOSE_USER_EMAIL"] || "user@ribose.com"
+    end
+  end
 end
