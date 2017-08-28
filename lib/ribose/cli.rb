@@ -10,6 +10,12 @@ module Ribose
   module CLI
     def self.start(arguments)
       Ribose::CLI::Command.start(arguments)
+    rescue Ribose::Errors::Forbidden
+      Thor::Shell::Basic.new.say(
+        "Invalid: Missing API Configuration\n\n" \
+        "Ribose API Token & Email are required for any of the CLI operation\n" \
+        "You can set your API Key using `ribose config --token "" --email "" `",
+      )
     end
   end
 end
