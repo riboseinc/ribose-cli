@@ -64,6 +64,15 @@ This interface also has support `json` format, if we want the output to be in
 ribose space list --format json
 ```
 
+#### Create a new space
+
+To create a new user space we can use the following interface
+
+```sh
+ribose space add --name "Space name" --access "open" --category-id 12 \
+  --description "Space description"
+```
+
 ## Development
 
 We are following Sandi Metz's Rules for this gem, you can read the

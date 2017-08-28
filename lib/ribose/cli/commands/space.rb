@@ -4,14 +4,35 @@ module Ribose
       class Space < Thor
         desc "list", "List user spaces"
         option :format, aliases: "-f", desc: "Output format, eg: json"
+
         def list
           say(build_output(list_user_spaces, options))
+        end
+
+        desc "add", "Add a new user space"
+        option :access, desc: "The visiblity for the space"
+        option :name, aliases: "-n", desc: "Name of the space"
+        option :description, desc: "The description for space"
+        option :category_id, desc: "The category for this space"
+
+        def add
+          space = create_space(options)
+          say("New Space created! Id: " + space.id)
         end
 
         private
 
         def list_user_spaces
           @user_spaces ||= Ribose::Space.all
+        end
+
+        def create_space(attributes)
+          Ribose::Space.create(
+            name: attributes[:name],
+            access: attributes[:access] || "open",
+            description: attributes[:description],
+            category_id: attributes[:category_id],
+          )
         end
 
         def build_output(spaces, options)

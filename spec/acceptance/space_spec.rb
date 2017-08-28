@@ -26,4 +26,31 @@ RSpec.describe "Ribose Space" do
       end
     end
   end
+
+  describe "Adding a new space" do
+    it "allows us to add a new space" do
+      command = %W(
+        space add
+        --name #{space.name}
+        --access #{space.access}
+        --description #{space.description}
+        --category-id #{space.category_id}
+      )
+
+      stub_ribose_space_create_api(space.to_h)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/New Space created!/)
+      expect(output).to match(/Id: 6b2741ad-4cde-4b4d-af3b-a162a4f6bc25/)
+    end
+  end
+
+  def space
+    @space ||= OpenStruct.new(
+      access: "public",
+      description: "Space description",
+      category_id: "12",
+      name: "CLI Space",
+    )
+  end
 end
