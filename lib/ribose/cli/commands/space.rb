@@ -20,6 +20,17 @@ module Ribose
           say("New Space created! Id: " + space.id)
         end
 
+        desc "remove", "Remove an existing space"
+        option :space_id, required: true, desc: "The Space UUID"
+        option :confirmation, required: true, desc: "The confirmation"
+
+        def remove
+          remove_space(options)
+          say("The Sapce has been removed!")
+        rescue
+          say("Please provide a valid Space UUID")
+        end
+
         private
 
         def list_user_spaces
@@ -32,6 +43,13 @@ module Ribose
             access: attributes[:access] || "open",
             description: attributes[:description],
             category_id: attributes[:category_id],
+          )
+        end
+
+        def remove_space(attributes)
+          Ribose::Space.remove(
+            attributes[:space_id],
+            password_confirmation: attributes[:confirmation],
           )
         end
 

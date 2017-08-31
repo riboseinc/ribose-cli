@@ -45,6 +45,18 @@ RSpec.describe "Ribose Space" do
     end
   end
 
+  describe "Remove an existing space" do
+    it "removes an existing space" do
+      space_uuid = "6b2741ad-4cde-4b4d-af3b-a162a4f6bc25"
+      command = %W(space remove --space-id #{space_uuid} --confirmation 12345)
+
+      stub_ribose_space_remove_api(space_uuid, password_confirmation: "12345")
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/The Sapce has been removed!/)
+    end
+  end
+
   def space
     @space ||= OpenStruct.new(
       access: "public",

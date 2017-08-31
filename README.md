@@ -73,6 +73,12 @@ ribose space add --name "Space name" --access "open" --category-id 12 \
   --description "Space description"
 ```
 
+#### Remove an existing space
+
+```sh
+ribose space remove --space-id 123456789 --confirmation 123456789
+```
+
 ## Development
 
 We are following Sandi Metz's Rules for this gem, you can read the
