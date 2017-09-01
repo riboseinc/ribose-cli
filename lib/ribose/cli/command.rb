@@ -1,11 +1,15 @@
 require "ribose/cli/rcfile"
 require "ribose/cli/commands/space"
+require "ribose/cli/commands/file"
 
 module Ribose
   module CLI
     class Command < Thor
       desc "space", "List, Add or Remove User Space"
       subcommand :space, Ribose::CLI::Commands::Space
+
+      desc "file", "List, Add or Remove Files"
+      subcommand :file, Ribose::CLI::Commands::File
 
       desc "config", "Configure API Key and User Email"
       option :token, required: true, desc: "Your API Token for Ribose"

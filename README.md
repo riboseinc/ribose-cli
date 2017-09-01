@@ -79,6 +79,20 @@ ribose space add --name "Space name" --access "open" --category-id 12 \
 ribose space remove --space-id 123456789 --confirmation 123456789
 ```
 
+### Files
+
+#### Listing files
+
+Ribose space may contain multiple files, and if we want to retrieve the list of
+the files of any space then we can use to following interface.
+
+```sh
+ribose file list --space-id 123456
+```
+
+The above interface will retrieve the basic details in tabular format, but it
+also support additional `format` option, acceptable option: `json`.
+
 ## Development
 
 We are following Sandi Metz's Rules for this gem, you can read the
