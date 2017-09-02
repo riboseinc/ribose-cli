@@ -93,6 +93,14 @@ ribose file list --space-id 123456
 The above interface will retrieve the basic details in tabular format, but it
 also support additional `format` option, acceptable option: `json`.
 
+### Conversations
+
+#### Listing conversations
+
+```sh
+ribose conversation list --space-id 123456789
+```
+
 ## Development
 
 We are following Sandi Metz's Rules for this gem, you can read the
