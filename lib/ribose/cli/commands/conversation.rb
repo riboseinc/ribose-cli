@@ -10,10 +10,26 @@ module Ribose
           say(build_output(list_conversations, options))
         end
 
+        desc "add", "Add a new conversation to Space"
+        option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
+        option :title, required: true, desc: "The title for the conversation"
+        option :tags, aliases: "-t", desc: "The tags for the conversation"
+
+        def add
+          conversation = create_conversation(options)
+          say("New Conversation created! Id: " + conversation.id)
+        end
+
         private
 
         def list_conversations
           @conversations ||= Ribose::Conversation.all(options[:space_id])
+        end
+
+        def create_conversation(options)
+          Ribose::Conversation.create(
+            options[:space_id], name: options[:title], tag_list: options[:tags]
+          )
         end
 
         def build_output(conversations, options)

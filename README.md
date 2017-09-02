@@ -101,6 +101,13 @@ also support additional `format` option, acceptable option: `json`.
 ribose conversation list --space-id 123456789
 ```
 
+#### Create A New Conversation
+
+```sh
+ribose conversation add --space-id 123456789 --title "Conversation Title" \
+  --tags "sample, conversation"
+```
+
 ## Development
 
 We are following Sandi Metz's Rules for this gem, you can read the
