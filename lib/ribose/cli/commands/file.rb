@@ -10,10 +10,32 @@ module Ribose
           say(build_output(list_files(options), options))
         end
 
+        desc "add", "Adding a new fille to a space"
+        option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
+        option :description, aliases: "-d", desc: "The file upload description"
+        option :tag_list, aliases: "-t", desc: "File tags, separated by commas"
+
+        def add(file)
+          file_upload = create_upload(file, options)
+
+          if file_upload.id
+            say("#{file_upload.name} added to your space!")
+          end
+        end
+
         private
 
         def list_files(attributes)
           @files ||= Ribose::SpaceFile.all(attributes[:space_id])
+        end
+
+        def create_upload(file, attributes = {})
+          Ribose::SpaceFile.create(
+            attributes[:space_id],
+            file: file,
+            tag_list: attributes[:tag_list],
+            description: attributes[:description],
+          )
         end
 
         def build_output(files, options)

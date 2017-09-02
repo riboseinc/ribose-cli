@@ -93,6 +93,15 @@ ribose file list --space-id 123456
 The above interface will retrieve the basic details in tabular format, but it
 also support additional `format` option, acceptable option: `json`.
 
+#### Add a new file
+
+Ribose CLI allows us to upload a file in a user space, and to upload a new file
+we can use the following interface.
+
+```sh
+ribose file add full_path_the_file.ext  --space-id space_uuid **other_options
+```
+
 ### Conversations
 
 #### Listing conversations
