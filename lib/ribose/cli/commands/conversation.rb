@@ -20,6 +20,17 @@ module Ribose
           say("New Conversation created! Id: " + conversation.id)
         end
 
+        desc "remove", "Remove A Conversation from Space"
+        option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
+        option :conversation_id, required: true, aliases: "-c"
+
+        def remove
+          remove_conversation(options)
+          say("The Conversation has been removed!")
+        rescue
+          say("Please provide a valid Conversation UUID")
+        end
+
         private
 
         def list_conversations
@@ -29,6 +40,13 @@ module Ribose
         def create_conversation(options)
           Ribose::Conversation.create(
             options[:space_id], name: options[:title], tag_list: options[:tags]
+          )
+        end
+
+        def remove_conversation(options)
+          Ribose::Conversation.remove(
+            space_id: options[:space_id],
+            conversation_id: options[:conversation_id],
           )
         end
 

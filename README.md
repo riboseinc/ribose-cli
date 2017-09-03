@@ -108,6 +108,12 @@ ribose conversation add --space-id 123456789 --title "Conversation Title" \
   --tags "sample, conversation"
 ```
 
+#### Remove A Conversation
+
+```sh
+ribose conversation remove --space-id 1234 --conversation-id 5678
+```
+
 ## Development
 
 We are following Sandi Metz's Rules for this gem, you can read the

@@ -30,6 +30,17 @@ RSpec.describe "Space Conversation" do
     end
   end
 
+  describe "Remove a conversation" do
+    it "removes a conversation from a speace" do
+      command = %w(conversation remove -s 9876 --conversation-id 12345)
+
+      stub_ribose_space_conversation_remove(9876, 12345)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/The Conversation has been removed!/)
+    end
+  end
+
   def conversation
     @conversation ||= OpenStruct.new(
       space_id: 123_456_789, title: "The Special Conversation", tags: "sample",
