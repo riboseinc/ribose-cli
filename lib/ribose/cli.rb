@@ -18,4 +18,9 @@ module Ribose
       )
     end
   end
+
+  # Temporary: The API Client will implement it
+  module Errors
+    class Forbidden < StandardError; end
+  end
 end

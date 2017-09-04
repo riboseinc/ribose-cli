@@ -114,6 +114,14 @@ ribose conversation add --space-id 123456789 --title "Conversation Title" \
 ribose conversation remove --space-id 1234 --conversation-id 5678
 ```
 
+### Message
+
+#### Listing conversation messages
+
+```sh
+ribose message list --space-id 12345 --conversation-id 56789
+```
+
 ## Development
 
 We are following Sandi Metz's Rules for this gem, you can read the
