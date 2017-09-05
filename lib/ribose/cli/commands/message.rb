@@ -32,6 +32,18 @@ module Ribose
           say("Messge has been updated!")
         end
 
+        desc "remove", "Remove A Conversation from Space"
+        option :message_id, required: true, aliases: "-m"
+        option :conversation_id, aliases: "-c", required: true
+        option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
+
+        def remove
+          remove_message(options)
+          say("The message has been removed!")
+        rescue
+          say("Please provide a valid message UUID")
+        end
+
         private
 
         def list_messages
@@ -54,6 +66,14 @@ module Ribose
             space_id: options[:space_id],
             message_id: options[:message_id],
             contents: options[:message_body],
+            conversation_id: options[:conversation_id],
+          )
+        end
+
+        def remove_message(options)
+          Ribose::Message.remove(
+            space_id: options[:space_id],
+            message_id: options[:message_id],
             conversation_id: options[:conversation_id],
           )
         end

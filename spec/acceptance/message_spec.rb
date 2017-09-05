@@ -47,6 +47,17 @@ RSpec.describe "Conversation Messages" do
     end
   end
 
+  describe "Remove a message" do
+    it "allows us to remove an existing message" do
+      command = %w(message remove -s 123 -c 456 --message-id 123456)
+
+      stub_ribose_message_remove(123, 123456, 456)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/The message has been removed!/)
+    end
+  end
+
   def message
     @message ||= OpenStruct.new(
       contents: "Welcome to Ribose!",
