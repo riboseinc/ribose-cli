@@ -30,19 +30,27 @@ RSpec.describe "Conversation Messages" do
     end
   end
 
+  describe "Editing a message" do
+    it "allows us to edit a existing message" do
+      command = %W(
+        message edit
+        --space-id 123
+        --message-id 456789
+        --message-body #{message.contents}
+        --conversation-id #{message.conversation_id}
+      )
+
+      stub_ribose_message_update(123, 456789, message: message.to_h)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/Messge has been updated!/)
+    end
+  end
+
   def message
     @message ||= OpenStruct.new(
       contents: "Welcome to Ribose!",
       conversation_id: "987654321",
-    )
-  end
-
-  def stub_ribose_message_create(sid, attributes)
-    cid = attributes[:message][:conversation_id]
-    message_path = "spaces/#{sid}/conversation/conversations/#{cid}/messages"
-
-    stub_api_response(
-      :post, message_path, data: attributes, filename: "message_created"
     )
   end
 end

@@ -129,6 +129,14 @@ ribose message add --space-id 12345 --conversation-id 56789 \
   --message-body "Welcome to Ribose Space"
 ```
 
+#### Edit an existing message
+
+
+```sh
+ribose message add --message-id 123456 --space-id 12345 \
+  --conversation-id 56789 --message-body "Welcome to Ribose Space"
+```
+
 ## Development
 
 We are following Sandi Metz's Rules for this gem, you can read the
