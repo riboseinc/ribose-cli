@@ -10,7 +10,7 @@ RSpec.describe "Ribose Space" do
         output = capture_stdout { Ribose::CLI.start(command) }
 
         expect(output).to match(/Work/)
-        expect(output).to match(/123456789/)
+        expect(output).to match(/0e8d5c16-1a31-4df9-83d9-eeaa374d5adc/)
       end
     end
 
@@ -22,7 +22,7 @@ RSpec.describe "Ribose Space" do
         output = capture_stdout { Ribose::CLI.start(command) }
 
         expect(output).to match(/"name":"Work"/)
-        expect(output).to match(/"id":"123456789"/)
+        expect(output).to match(/"id":"0e8d5c16-1a31-4df9-83d9-eeaa374d5adc"/)
       end
     end
   end

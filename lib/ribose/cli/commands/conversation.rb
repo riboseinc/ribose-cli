@@ -44,7 +44,7 @@ module Ribose
         end
 
         def remove_conversation(options)
-          Ribose::Conversation.remove(
+          Ribose::Conversation.destroy(
             space_id: options[:space_id],
             conversation_id: options[:conversation_id],
           )
