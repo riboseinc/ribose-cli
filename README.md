@@ -79,6 +79,20 @@ ribose space add --name "Space name" --access "open" --category-id 12 \
 ribose space remove --space-id 123456789 --confirmation 123456789
 ```
 
+### Note
+
+#### Listing space notes
+
+```sh
+ribose note list --space-id space_uuid --format json
+```
+
+#### Create a new note
+
+```sh
+ribose note add --space-id space_uuid --title "Name of the note"
+```
+
 ### Files
 
 #### Listing files

@@ -10,10 +10,28 @@ module Ribose
           say(build_output(list_notes(options), options))
         end
 
+        desc "add", "Add a new note to a user space"
+        option :title, required: true, desc: "The title for the note"
+        option :tag_list, aliases: "-t", desc: "Note tags, separated by commas"
+        option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
+
+        def add
+          note = create_note(options)
+          say("Note has been posted added! Id: " + note.id.to_s)
+        end
+
         private
 
         def list_notes(attributes)
           @notes ||= Ribose::Wiki.all(attributes[:space_id])
+        end
+
+        def create_note(attributes)
+          Ribose::Wiki.create(
+            attributes[:space_id],
+            name: attributes[:title],
+            tag_list: attributes[:tag_list],
+          )
         end
 
         def build_output(notes, options)
