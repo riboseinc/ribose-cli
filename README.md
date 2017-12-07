@@ -93,6 +93,12 @@ ribose note list --space-id space_uuid --format json
 ribose note add --space-id space_uuid --title "Name of the note"
 ```
 
+#### Remove a note
+
+```sh
+ribose note remove --space-id space_uuid --note-id note_uuid
+```
+
 ### Files
 
 #### Listing files

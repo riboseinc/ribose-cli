@@ -15,12 +15,23 @@ RSpec.describe "Space Note" do
 
   describe "adding a new note" do
     it "adds a new note to a specific space" do
-      command = %w(note add -s 123456 --title Home)
-      stub_ribose_wiki_create_api(123_456, tag_list: nil, name: "Home")
+      command = %w(note add -s 123456 --title Home --tag-list hello)
+      stub_ribose_wiki_create_api(123_456, tag_list: "hello", name: "Home")
 
       output = capture_stdout { Ribose::CLI.start(command) }
 
       expect(output).to match(/Note has been posted added! Id:/)
+    end
+  end
+
+  describe "remove a note" do
+    it "removes a note from a specific space" do
+      command = %w(note remove -s 123456789 --note-id 789123456)
+
+      stub_ribose_wiki_delete_api(123456789, 789123456)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/The note has been removed!/)
     end
   end
 end
