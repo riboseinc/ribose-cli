@@ -27,6 +27,14 @@ module Ribose
             headings: table_headers, rows: table_rows(resources),
           )
         end
+
+        def symbolize_keys(options_hash)
+          Hash.new.tap do |hash|
+            options_hash.each_key do |key|
+              hash[(key.to_sym rescue key) || key] = options_hash.fetch(key)
+            end
+          end
+        end
       end
     end
   end

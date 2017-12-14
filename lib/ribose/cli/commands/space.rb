@@ -10,14 +10,29 @@ module Ribose
         end
 
         desc "add", "Add a new user space"
+        option :name, aliases: "-n", desc: "Name of the space"
+        option :description, desc: "The description for space"
+        option :category_id, desc: "The category for this space"
+        option :access, default: "open", desc: "The visiblity for the space"
+
+        def add
+          space = Ribose::Space.create(symbolize_keys(options))
+          say("New Space created! Id: " + space.id)
+        end
+
+        desc "update", "Update an existing space"
+        option :space_id, required: true, desc: "The Space UUID"
         option :access, desc: "The visiblity for the space"
         option :name, aliases: "-n", desc: "Name of the space"
         option :description, desc: "The description for space"
         option :category_id, desc: "The category for this space"
 
-        def add
-          space = create_space(options)
-          say("New Space created! Id: " + space.id)
+        def update
+          attributes = symbolize_keys(options)
+          Ribose::Space.update(attributes.delete(:space_id), attributes)
+          say("Your space has been updated!")
+        rescue Ribose::UnprocessableEntity
+          say("Something went wrong!, please check required attributes")
         end
 
         desc "remove", "Remove an existing space"
@@ -35,15 +50,6 @@ module Ribose
 
         def list_user_spaces
           @user_spaces ||= Ribose::Space.all
-        end
-
-        def create_space(attributes)
-          Ribose::Space.create(
-            name: attributes[:name],
-            access: attributes[:access] || "open",
-            description: attributes[:description],
-            category_id: attributes[:category_id],
-          )
         end
 
         def remove_space(attributes)

@@ -73,6 +73,12 @@ ribose space add --name "Space name" --access "open" --category-id 12 \
   --description "Space description"
 ```
 
+#### Update a space
+
+```sh
+ribose space update --space-id 123456 --name "New Space Name"
+```
+
 #### Remove an existing space
 
 ```sh

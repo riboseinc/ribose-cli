@@ -45,6 +45,24 @@ RSpec.describe "Ribose Space" do
     end
   end
 
+  describe "Updating a space" do
+    it "updates an existing user space" do
+      command = %W(
+        space update
+        --space-id 123456789
+        --access #{space.access}
+        --description #{space.description}
+        --category-id #{space.category_id}
+        --name #{space.name}
+      )
+
+      stub_ribose_space_update_api(123456789, space.to_h)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/Your space has been updated!/)
+    end
+  end
+
   describe "Remove an existing space" do
     it "removes an existing space" do
       space_uuid = "6b2741ad-4cde-4b4d-af3b-a162a4f6bc25"
