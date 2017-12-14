@@ -1,4 +1,5 @@
 require "ribose/cli/rcfile"
+require "ribose/cli/commands/base"
 require "ribose/cli/commands/space"
 require "ribose/cli/commands/file"
 require "ribose/cli/commands/conversation"

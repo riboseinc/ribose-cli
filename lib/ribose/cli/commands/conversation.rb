@@ -1,7 +1,7 @@
 module Ribose
   module CLI
     module Commands
-      class Conversation < Thor
+      class Conversation < Commands::Base
         desc "list", "Listing A Space Conversations"
         option :format, aliases: "-f", desc: "Output format, eg: json"
         option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
@@ -50,24 +50,12 @@ module Ribose
           )
         end
 
-        def build_output(conversations, options)
-          json_view(conversations, options) || table_view(conversations)
-        end
-
-        def json_view(conversations, options)
-          if options[:format] == "json"
-            conversations.map(&:to_h).to_json
-          end
+        def table_headers
+          ["ID", "Title"]
         end
 
         def table_rows(conversations)
           conversations.map { |conv| [conv.id, conv.name] }
-        end
-
-        def table_view(conversations)
-          Ribose::CLI::Util.list(
-            headings: ["ID", "Title"], rows: table_rows(conversations),
-          )
         end
       end
     end

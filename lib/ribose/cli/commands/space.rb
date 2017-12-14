@@ -1,7 +1,7 @@
 module Ribose
   module CLI
     module Commands
-      class Space < Thor
+      class Space < Commands::Base
         desc "list", "List user spaces"
         option :format, aliases: "-f", desc: "Output format, eg: json"
 
@@ -53,24 +53,12 @@ module Ribose
           )
         end
 
-        def build_output(spaces, options)
-          json_view(spaces, options) || table_view(spaces)
-        end
-
-        def json_view(spaces, options)
-          if options[:format] == "json"
-            spaces.map(&:to_h).to_json
-          end
+        def table_headers
+          ["ID", "Name", "Active?"]
         end
 
         def table_rows(spaces)
           spaces.map { |space| [space.id, space.name, space.active ] }
-        end
-
-        def table_view(spaces)
-          Ribose::CLI::Util.list(
-            headings: ["ID", "Name", "Active?"], rows: table_rows(spaces),
-          )
         end
       end
     end
