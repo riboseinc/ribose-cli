@@ -9,6 +9,15 @@ module Ribose
           say(build_output(list_user_spaces, options))
         end
 
+        desc "show", "Details for a space"
+        option :space_id, aliases: "-s", description: "The Space UUID"
+        option :format, aliases: "-f", desc: "Output format, eg: json"
+
+        def show
+          space = Ribose::Space.fetch(options[:space_id])
+          say(build_resource_output(space, options))
+        end
+
         desc "add", "Add a new user space"
         option :name, aliases: "-n", desc: "Name of the space"
         option :description, desc: "The description for space"
@@ -65,6 +74,11 @@ module Ribose
 
         def table_rows(spaces)
           spaces.map { |space| [space.id, space.name, space.active ] }
+        end
+
+        # Single resource fields
+        def table_field_names
+          %w(id name visibility active members_count role_name)
         end
       end
     end

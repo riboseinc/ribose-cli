@@ -27,6 +27,32 @@ RSpec.describe "Ribose Space" do
     end
   end
 
+  describe "Retrieving a space" do
+    context "with default options" do
+      it "displays the space in tabular format" do
+        command = %w(space show --space-id 123456789)
+
+        stub_ribose_space_fetch_api(123_456_789)
+        output = capture_stdout { Ribose::CLI.start(command) }
+
+        expect(output).to match(/name          | Work/)
+        expect(output).to match(/visibility    | invisible/)
+      end
+    end
+
+    context "with format option" do
+      it "displays as the space in supported format" do
+        command = %w(space show --space-id 123456789 --format json)
+
+        stub_ribose_space_fetch_api(123_456_789)
+        output = capture_stdout { Ribose::CLI.start(command) }
+
+        expect(output).to match(/"name":"Work"/)
+        expect(output).to match(/"id":"0e8d5c16-1a31-4df9-83d9-eeaa374d5adc"/)
+      end
+    end
+  end
+
   describe "Adding a new space" do
     it "allows us to add a new space" do
       command = %W(
