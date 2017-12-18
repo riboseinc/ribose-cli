@@ -10,6 +10,21 @@ module Ribose
           say(build_output(list_conversations, options))
         end
 
+        desc "show", "Show the details for a conversation"
+        option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
+        option :format, aliases: "-f", desc: "Output format, eg: json"
+
+        option(
+          :conversation_id,
+          required: true,
+          aliases: "-c",
+          desc: "The Conversation UUID",
+        )
+
+        def show
+          say(build_resource_output(conversation(options), options))
+        end
+
         desc "add", "Add a new conversation to Space"
         option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
         option :title, required: true, desc: "The title for the conversation"
@@ -33,6 +48,12 @@ module Ribose
 
         private
 
+        def conversation(attributes)
+          @conversation ||= Ribose::Conversation.fetch(
+            attributes[:space_id], attributes[:conversation_id]
+          )
+        end
+
         def list_conversations
           @conversations ||= Ribose::Conversation.all(options[:space_id])
         end
@@ -52,6 +73,10 @@ module Ribose
 
         def table_headers
           ["ID", "Title"]
+        end
+
+        def table_field_names
+          %w(id space_id name number_of_messages allow_comment)
         end
 
         def table_rows(conversations)

@@ -13,6 +13,18 @@ RSpec.describe "Space Conversation" do
     end
   end
 
+  describe "Retrieving a conversation" do
+    it "retrieves the details for a conversation" do
+      command = %w(conversation show --space-id 12345 --conversation-id 6789)
+
+      stub_ribose_space_conversation_fetch_api(12345, 6789)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/number_of_messages | 1/)
+      expect(output).to match(/name               | Trips to the Mars!/)
+    end
+  end
+
   describe "Adding a new conversations" do
     it "creates a new conversation into a user space" do
       command = %W(

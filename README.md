@@ -142,6 +142,12 @@ ribose file add full_path_the_file.ext  --space-id space_uuid **other_options
 ribose conversation list --space-id 123456789
 ```
 
+#### Show a conversation details
+
+```sh
+ribose conversation show --space-id 123456789 --conversation-id 67890
+```
+
 #### Create A New Conversation
 
 ```sh
