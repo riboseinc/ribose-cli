@@ -10,6 +10,16 @@ module Ribose
           say(build_output(list_notes(options), options))
         end
 
+        desc "show", "Show details for a note"
+        option :format, aliases: "-f", desc: "Output format, eg: json"
+        option :note_id, required: true, aliases: "-n", desc: "The Note UUID"
+        option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
+
+        def show
+          note = Ribose::Wiki.fetch(options[:space_id], options[:note_id])
+          say(build_resource_output(note, options))
+        end
+
         desc "add", "Add a new note to a user space"
         option :title, required: true, desc: "The title for the note"
         option :tag_list, aliases: "-t", desc: "Note tags, separated by commas"
@@ -51,6 +61,10 @@ module Ribose
 
         def table_headers
           ["ID", "Name", "Revisions"]
+        end
+
+        def table_field_names
+          %w(id space_id name address version revision tag_list)
         end
 
         def table_rows(notes)

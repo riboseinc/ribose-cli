@@ -99,6 +99,12 @@ ribose space remove --space-id 123456789 --confirmation 123456789
 ribose note list --space-id space_uuid --format json
 ```
 
+### Show a space note
+
+```sh
+ribose note show --note-id 123456 --space-id 78901
+```
+
 #### Create a new note
 
 ```sh

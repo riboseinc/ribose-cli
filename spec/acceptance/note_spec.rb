@@ -13,6 +13,19 @@ RSpec.describe "Space Note" do
     end
   end
 
+  describe "retrieve a note" do
+    it "retrieves the details for a note" do
+      command = %w(note show --space-id 123456 --note-id 789012)
+
+      stub_ribose_wiki_fetch_api(123456, 789012)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/revision | 23/)
+      expect(output).to match(/name     | Wiki Page One/)
+      expect(output).to match(/address  | wiki-page-one/)
+    end
+  end
+
   describe "adding a new note" do
     it "adds a new note to a specific space" do
       command = %w(note add -s 123456 --title Home --tag-list hello)
