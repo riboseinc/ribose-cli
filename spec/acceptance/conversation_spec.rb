@@ -42,6 +42,26 @@ RSpec.describe "Space Conversation" do
     end
   end
 
+  describe "Update an existing conversation" do
+    it "updates details for an existing conversation" do
+      command = %W(
+        conversation update
+        --conversation-id 123456789
+        --space-id #{conversation.space_id}
+        --title #{conversation.title}
+        --tags #{conversation.tags}
+      )
+
+      stub_ribose_space_conversation_update_api(
+        123_456_789, 123_456_789, conversation.to_h
+      )
+
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/Your conversation has been updated!/)
+    end
+  end
+
   describe "Remove a conversation" do
     it "removes a conversation from a speace" do
       command = %w(conversation remove -s 9876 --conversation-id 12345)

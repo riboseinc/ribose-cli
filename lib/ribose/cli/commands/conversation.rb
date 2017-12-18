@@ -35,6 +35,24 @@ module Ribose
           say("New Conversation created! Id: " + conversation.id)
         end
 
+        desc "update", "Updae an existing conversation"
+        option :title, desc: "The title for the conversation"
+        option :tags, aliases: "-t", desc: "The tags for the conversation"
+        option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
+        option(
+          :conversation_id,
+          required: true,
+          aliases: "-c",
+          desc: "The conversation UUID",
+        )
+
+        def update
+          update_conversation(symbolize_keys(options))
+          say("Your conversation has been updated!")
+        rescue Ribose::UnprocessableEntity
+          say("Something went wrong!, please check required attributes")
+        end
+
         desc "remove", "Remove A Conversation from Space"
         option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
         option :conversation_id, required: true, aliases: "-c"
@@ -61,6 +79,14 @@ module Ribose
         def create_conversation(options)
           Ribose::Conversation.create(
             options[:space_id], name: options[:title], tag_list: options[:tags]
+          )
+        end
+
+        def update_conversation(attributes)
+          Ribose::Conversation.update(
+            attributes.delete(:space_id),
+            attributes.delete(:conversation_id),
+            attributes,
           )
         end
 

@@ -155,6 +155,13 @@ ribose conversation add --space-id 123456789 --title "Conversation Title" \
   --tags "sample, conversation"
 ```
 
+#### Update a conversation
+
+```sh
+conversation update --conversation-id 5678 --space-id 123456789 --title \
+"Conversation Title" --tags "sample, conversation"
+```
+
 #### Remove A Conversation
 
 ```sh
