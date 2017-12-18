@@ -30,10 +30,10 @@ RSpec.describe "Conversation Messages" do
     end
   end
 
-  describe "Editing a message" do
-    it "allows us to edit a existing message" do
+  describe "Updating a message" do
+    it "allows us to update a existing message" do
       command = %W(
-        message edit
+        message update
         --space-id 123
         --message-id 456789
         --message-body #{message.contents}

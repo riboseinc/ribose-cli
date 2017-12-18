@@ -183,11 +183,11 @@ ribose message add --space-id 12345 --conversation-id 56789 \
   --message-body "Welcome to Ribose Space"
 ```
 
-#### Edit an existing message
+#### Update an existing message
 
 
 ```sh
-ribose message add --message-id 123456 --space-id 12345 \
+ribose message update --message-id 123456 --space-id 12345 \
   --conversation-id 56789 --message-body "Welcome to Ribose Space"
 ```
 

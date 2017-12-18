@@ -21,13 +21,13 @@ module Ribose
           say("Messge has been posted! Id: " + message.id)
         end
 
-        desc "edit", "Edit an existing Message"
+        desc "update", "Update an existing Message"
         option :message_body, required: true, aliases: "-b"
         option :message_id, required: true, aliases: "-m"
         option :conversation_id, aliases: "-c", required: true
         option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
 
-        def edit
+        def update
           update_message(options)
           say("Messge has been updated!")
         end
