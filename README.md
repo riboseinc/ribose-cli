@@ -99,6 +99,16 @@ ribose space remove --space-id 123456789 --confirmation 123456789
 ribose member list --space-id space_uuid
 ```
 
+#### Add a new space member
+
+```sh
+ribose member add \
+  --space-id space_uuid \
+  --user-id=user-one-uuid:role_one_id user-two-uuid:role_two_id \
+  --email=email-one@example.com:role_one_id email@example.com:role_two_id \
+  --message="Your invitation messages to the invitees"
+```
+
 ### Note
 
 #### Listing space notes
