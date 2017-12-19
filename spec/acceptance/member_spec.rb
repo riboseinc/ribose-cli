@@ -12,4 +12,12 @@ RSpec.describe "Space Member" do
       expect(output).to match(/8332-fcdaecb13e34 | John Doe | Administrator/)
     end
   end
+
+  describe "show" do
+    it "retrieves the details for a member" do
+      command = %w(member show --member-id 1234 --space-id 5678 -f json)
+      output = capture_stdout { Ribose::CLI.start(command) }
+      puts output
+    end
+  end
 end
