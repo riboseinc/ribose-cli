@@ -37,6 +37,17 @@ RSpec.describe "Space Note" do
     end
   end
 
+  describe "update a note" do
+    it "updates the details for an existing note" do
+      command = %w(note update -s 1234 -n 5678 --title Sample)
+      stub_ribose_wiki_update_api(1234, 5678, name: "Sample", tag_list: "")
+
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/Your space note has been updated!/)
+    end
+  end
+
   describe "remove a note" do
     it "removes a note from a specific space" do
       command = %w(note remove -s 123456789 --note-id 789123456)

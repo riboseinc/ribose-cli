@@ -111,6 +111,12 @@ ribose note show --note-id 123456 --space-id 78901
 ribose note add --space-id space_uuid --title "Name of the note"
 ```
 
+#### Update an existing note
+
+```sh
+ribose note update --space-id 1234 --note-id 5678 --title "Name of the note"
+```
+
 #### Remove a note
 
 ```sh

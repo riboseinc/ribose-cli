@@ -30,6 +30,19 @@ module Ribose
           say("Note has been posted added! Id: " + note.id.to_s)
         end
 
+        desc "update", "Update details for an existing note"
+        option :note_id, required: true, aliases: "-n", desc: "The Note UUID"
+        option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
+        option :title, desc: "The title for the note"
+        option :tag_list, aliases: "-t", desc: "Note tags, separated by commas"
+
+        def update
+          update_note(options)
+          say("Your space note has been updated!")
+        rescue Ribose::UnprocessableEntity
+          say("Something went wrong!, please check required attributes")
+        end
+
         desc "remove", "Removes a note from a space"
         option :note_id, required: true, aliases: "-n", desc: "The Note UUID"
         option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
@@ -51,6 +64,15 @@ module Ribose
           Ribose::Wiki.create(
             attributes[:space_id],
             name: attributes[:title],
+            tag_list: attributes[:tag_list] || "",
+          )
+        end
+
+        def update_note(attributes)
+          Ribose::Wiki.update(
+            attributes[:space_id],
+            attributes[:note_id],
+            name: attributes[:title] || "",
             tag_list: attributes[:tag_list] || "",
           )
         end
