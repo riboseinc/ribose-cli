@@ -91,6 +91,14 @@ ribose space update --space-id 123456 --name "New Space Name"
 ribose space remove --space-id 123456789 --confirmation 123456789
 ```
 
+### Members
+
+#### List space members
+
+```sh
+ribose member list --space-id space_uuid
+```
+
 ### Note
 
 #### Listing space notes

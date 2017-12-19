@@ -5,12 +5,16 @@ require "ribose/cli/commands/file"
 require "ribose/cli/commands/conversation"
 require "ribose/cli/commands/message"
 require "ribose/cli/commands/note"
+require "ribose/cli/commands/member"
 
 module Ribose
   module CLI
     class Command < Thor
       desc "space", "List, Add or Remove User Space"
       subcommand :space, Ribose::CLI::Commands::Space
+
+      desc "member", "List, Add or Remove Space Member"
+      subcommand :member, Ribose::CLI::Commands::Member
 
       desc "note", "List, Add or Remove Space Note"
       subcommand :note, Ribose::CLI::Commands::Note
