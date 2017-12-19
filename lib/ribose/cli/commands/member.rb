@@ -10,6 +10,16 @@ module Ribose
           say(build_output(Ribose::Member.all(options[:space_id]), options))
         end
 
+        desc "show", "Show a member details"
+        option :format, aliases: "-f", desc: "Output format, eg: json"
+        option :space_id, required: true, alias: "-s", desc: "The Space UUID"
+        option :member_id, required: true, alias: "-m", desc: "The Member UUID"
+
+        def show
+          member = Ribose::Member.fetch(options[:space_id], options[:member_id])
+          say(build_resource_output(member, options))
+        end
+
         private
 
         def table_headers
