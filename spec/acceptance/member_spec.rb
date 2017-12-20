@@ -44,6 +44,17 @@ RSpec.describe "Space Member" do
     end
   end
 
+  describe "remove" do
+    it "removes an existing space member" do
+      command = %w(member remove --member-id 246 --space-id 1234)
+
+      stub_ribose_space_member_delete_api(1234, 246)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/The member has been removed from this space/)
+    end
+  end
+
   def invitation
     @invitation ||= OpenStruct.new(
       id1: "123456",

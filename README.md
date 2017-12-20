@@ -109,6 +109,18 @@ ribose member add \
   --message="Your invitation messages to the invitees"
 ```
 
+#### Update an existing member
+
+```sh
+ribose member update --role-id 135 --member-id 246 --space-id 1234
+```
+
+#### Remove a space member
+
+```sh
+ribose member remove --member-id 246 --space-id 1234
+```
+
 ### Note
 
 #### Listing space notes

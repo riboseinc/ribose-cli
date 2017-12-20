@@ -35,6 +35,17 @@ module Ribose
           say("Something went wrong! Please check required attributes")
         end
 
+        desc "remove", "Remove a space member"
+        option :member_id, required: true, aliases: "-m", desc: "Member UUID"
+        option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
+
+        def remove
+          Ribose::Member.delete(options[:space_id], options[:member_id])
+          say("The member has been removed from this space")
+        rescue Ribose::UnprocessableEntity
+          say("Something went wrong! Please provide a valid id/uuid")
+        end
+
         private
 
         def add_member_to_space(attributes)
