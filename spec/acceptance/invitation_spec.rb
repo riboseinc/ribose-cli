@@ -33,6 +33,17 @@ RSpec.describe "Space Invitation" do
     end
   end
 
+  describe "accept" do
+    it "allows us to accept a space invitation" do
+      command = %w(invitation accept --invitation-id 2468)
+
+      stub_ribose_space_invitation_update_api(2468, state: 1)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/Space invitation has been accepted!/)
+    end
+  end
+
   def invitation
     @invitation ||= OpenStruct.new(
       id1: "123456",

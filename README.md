@@ -139,6 +139,11 @@ ribose invitation add \
   --message="Your invitation messages to the invitees"
 ```
 
+#### Accept a space invitation
+
+```sh
+ribose invitation accept --invitation-id 2468
+```
 
 ### Note
 

@@ -20,6 +20,14 @@ module Ribose
           invoke(Member, :add)
         end
 
+        desc "accept", "Accept a space invitation"
+        option :invitation_id, required: true, desc: "Invitation UUID"
+
+        def accept
+          Ribose::SpaceInvitation.accept(options[:invitation_id])
+          say("Space invitation has been accepted!")
+        end
+
         private
 
         def table_headers
