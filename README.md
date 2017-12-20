@@ -121,6 +121,15 @@ ribose member update --role-id 135 --member-id 246 --space-id 1234
 ribose member remove --member-id 246 --space-id 1234
 ```
 
+### Space Invitation
+
+#### List Space Invitation
+
+```sh
+
+ribose invitation list --space-id 1234 [--query=key:value]
+```
+
 ### Note
 
 #### Listing space notes

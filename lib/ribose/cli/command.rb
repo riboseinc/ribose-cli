@@ -6,6 +6,7 @@ require "ribose/cli/commands/conversation"
 require "ribose/cli/commands/message"
 require "ribose/cli/commands/note"
 require "ribose/cli/commands/member"
+require "ribose/cli/commands/invitation"
 
 module Ribose
   module CLI
@@ -27,6 +28,9 @@ module Ribose
 
       desc "message", "List, Add or Remove Message"
       subcommand :message, Ribose::CLI::Commands::Message
+
+      desc "invitation", "Manage Space Invitations"
+      subcommand :invitation, Ribose::CLI::Commands::Invitation
 
       desc "config", "Configure API Key and User Email"
       option :token, required: true, desc: "Your API Token for Ribose"
