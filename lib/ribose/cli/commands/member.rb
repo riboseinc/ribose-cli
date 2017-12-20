@@ -54,7 +54,9 @@ module Ribose
             body: attributes[:message] || "",
             emails: (attributes[:email] || {}).keys,
             user_ids: (attributes[:user_id] || {}).keys,
-            role_ids: (attributes[:email] || {}).merge(attributes[:user_id]),
+            role_ids: (attributes[:email] || {}).merge(
+              attributes[:user_id] || {},
+            ),
           )
         end
 

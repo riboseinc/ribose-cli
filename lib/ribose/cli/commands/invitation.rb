@@ -3,12 +3,21 @@ module Ribose
     module Commands
       class Invitation < Commands::Base
         desc "list", "List space invitations"
-        option :space_id, aliases: "-s", desc: "The Space UUID"
         option :query, type: :hash, desc: "Query parameters as hash"
         option :format, aliases: "-f", desc: "Output format, eg: json"
 
         def list
           say(build_output(Ribose::SpaceInvitation.all(options), options))
+        end
+
+        desc "add", "Add a new space member"
+        option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
+        option :user_id, aliases: "-u", type: :hash, desc: "Invitee's IDS"
+        option :email, aliases: "-e", type: :hash, desc: "Invitee's emails"
+        option :message, aliases: "-m", desc: "Space invitation message"
+
+        def add
+          invoke(Member, :add)
         end
 
         private

@@ -126,9 +126,19 @@ ribose member remove --member-id 246 --space-id 1234
 #### List Space Invitation
 
 ```sh
-
-ribose invitation list --space-id 1234 [--query=key:value]
+ribose invitation list [--query=key:value]
 ```
+
+#### Send out space invitation
+
+```sh
+ribose invitation add \
+  --space-id space_uuid \
+  --user-id=user-one-uuid:role_one_id user-two-uuid:role_two_id \
+  --email=email-one@example.com:role_one_id email@example.com:role_two_id \
+  --message="Your invitation messages to the invitees"
+```
+
 
 ### Note
 
