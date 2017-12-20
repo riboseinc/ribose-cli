@@ -33,6 +33,17 @@ RSpec.describe "Space Member" do
     end
   end
 
+  describe "update" do
+    it "updates an existing member details" do
+      command = %w(member update --role-id 135 --member-id 246 --space-id 1234)
+
+      stub_ribose_member_role_assign(1234, 246, "135")
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/Member has been updated with new role!/)
+    end
+  end
+
   def invitation
     @invitation ||= OpenStruct.new(
       id1: "123456",
