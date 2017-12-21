@@ -7,6 +7,7 @@ require "ribose/cli/commands/message"
 require "ribose/cli/commands/note"
 require "ribose/cli/commands/member"
 require "ribose/cli/commands/invitation"
+require "ribose/cli/commands/join_space"
 
 module Ribose
   module CLI
@@ -31,6 +32,9 @@ module Ribose
 
       desc "invitation", "Manage Space Invitations"
       subcommand :invitation, Ribose::CLI::Commands::Invitation
+
+      desc "join-space", "Manage Join Space Request"
+      subcommand :join_space, Ribose::CLI::Commands::JoinSpace
 
       desc "config", "Configure API Key and User Email"
       option :token, required: true, desc: "Your API Token for Ribose"

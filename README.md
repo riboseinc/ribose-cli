@@ -163,6 +163,14 @@ ribose invitation reject --invitation-id 2468
 ribose invitation remove --invitation-id 2468
 ```
 
+### Join Space Request
+
+#### List join space requests
+
+```sh
+ribose join-space list [--query=space-id:2468]
+```
+
 ### Note
 
 #### Listing space notes
