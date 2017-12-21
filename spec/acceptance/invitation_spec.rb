@@ -33,6 +33,17 @@ RSpec.describe "Space Invitation" do
     end
   end
 
+  describe "update" do
+    it "updates the details for an invitation" do
+      command = %w(invitation update --invitation-id 2468 --role-id 246)
+      stub_ribose_space_invitation_update_api(2468, role_id: "246")
+
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/Space invitation has been updated!/)
+    end
+  end
+
   describe "accept" do
     it "allows us to accept a space invitation" do
       command = %w(invitation accept --invitation-id 2468)

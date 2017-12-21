@@ -20,6 +20,18 @@ module Ribose
           invoke(Member, :add)
         end
 
+        desc "update", "Update a space invitation"
+        option :role_id, aliases: "-r", desc: "The Role ID"
+        option :state, aliases: "-s", desc: "New state for invitation"
+        option :invitation_id, required: true, desc: "Invitation UUID"
+
+        def update
+          update_invitation(options)
+          say("Space invitation has been updated!")
+        rescue Ribose::UnprocessableEntity
+          say("Something went wrong! Please check required attributes")
+        end
+
         desc "accept", "Accept a space invitation"
         option :invitation_id, required: true, desc: "Invitation UUID"
 
@@ -29,6 +41,12 @@ module Ribose
         end
 
         private
+
+        def update_invitation(attributes)
+          Ribose::SpaceInvitation.update(
+            attributes.delete(:invitation_id), attributes
+          )
+        end
 
         def table_headers
           ["ID", "Inviter", "Type", "Space Name"]

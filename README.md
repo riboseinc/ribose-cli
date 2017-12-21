@@ -139,6 +139,12 @@ ribose invitation add \
   --message="Your invitation messages to the invitees"
 ```
 
+#### Update a space invitation
+
+```sh
+ribose invitation update --invitation-id 2468 --role-id 246
+```
+
 #### Accept a space invitation
 
 ```sh
