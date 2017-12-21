@@ -151,6 +151,12 @@ ribose invitation update --invitation-id 2468 --role-id 246
 ribose invitation accept --invitation-id 2468
 ```
 
+#### Reject a space invitation
+
+```sh
+ribose invitation reject --invitation-id 2468
+```
+
 #### Remove a space invitation
 
 ```sh

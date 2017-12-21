@@ -55,6 +55,17 @@ RSpec.describe "Space Invitation" do
     end
   end
 
+  describe "reject" do
+    it "allows us to reject a space invitation" do
+      command = %w(invitation reject --invitation-id 2468)
+
+      stub_ribose_space_invitation_update_api(2468, state: 2)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/Space invitation has been rejected!/)
+    end
+  end
+
   describe "remove" do
     it "removes a space invitation" do
       command = %w(invitation remove --invitation-id 2468)
