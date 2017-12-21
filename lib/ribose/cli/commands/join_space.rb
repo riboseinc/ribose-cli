@@ -10,7 +10,29 @@ module Ribose
           say(build_output(Ribose::JoinSpaceRequest.all(options), options))
         end
 
+        desc "add", "Create a join space request"
+        option :type, aliases: "-t", desc: "The join request type"
+        option :state, desc: "The state for the join space request"
+        option :message, aliases: "-m", desc: "The join request message"
+        option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
+
+        def add
+          create_join_request(options)
+          say("Join space request has been sent successfully!")
+        rescue Ribose::UnprocessableEntity
+          say("Something went wrong! Please check required attributes")
+        end
+
         private
+
+        def create_join_request(attributes)
+          Ribose::JoinSpaceRequest.create(
+            state: attributes[:state] || 0,
+            space_id: attributes[:space_id],
+            body: attributes[:message] || "",
+            type: attributes[:type] || "Invitation::JoinSpaceRequest",
+          )
+        end
 
         def table_headers
           ["ID", "Inviter", "Type", "Space Name"]
