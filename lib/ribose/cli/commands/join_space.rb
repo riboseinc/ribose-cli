@@ -31,6 +31,14 @@ module Ribose
           say("Join space request has been accepted!")
         end
 
+        desc "reject", "Reject a join space request"
+        option :request_id, required: true, aliases: "-r", desc: "Request UUID"
+
+        def reject
+          Ribose::JoinSpaceRequest.reject(options[:request_id])
+          say("Join space request has been rejected!")
+        end
+
         private
 
         def create_join_request(attributes)

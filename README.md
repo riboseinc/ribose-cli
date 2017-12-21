@@ -183,6 +183,12 @@ ribose join-space add --space-id 1234 [--message "My request message"]
 ribose join-space accept --request-id 2468
 ```
 
+#### Reject a join space requests
+
+```sh
+ribose join-space reject --request-id 2468
+```
+
 ### Note
 
 #### Listing space notes
