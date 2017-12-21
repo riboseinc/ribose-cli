@@ -40,6 +40,16 @@ module Ribose
           say("Space invitation has been accepted!")
         end
 
+        desc "remove", "Remove a space invitation"
+        option :invitation_id, required: true, desc: "Invitation UUID"
+
+        def remove
+          Ribose::SpaceInvitation.cancel(options[:invitation_id])
+          say("Space invitation has been removed!")
+        rescue Ribose::Forbidden
+          say("Could not remove the specified invitation")
+        end
+
         private
 
         def update_invitation(attributes)

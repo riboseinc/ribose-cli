@@ -55,6 +55,17 @@ RSpec.describe "Space Invitation" do
     end
   end
 
+  describe "remove" do
+    it "removes a space invitation" do
+      command = %w(invitation remove --invitation-id 2468)
+
+      stub_ribose_space_invitation_cancel_api(2468)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/Space invitation has been removed!/)
+    end
+  end
+
   def invitation
     @invitation ||= OpenStruct.new(
       id1: "123456",
