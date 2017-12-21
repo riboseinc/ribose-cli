@@ -177,6 +177,12 @@ ribose join-space list [--query=space-id:2468]
 ribose join-space add --space-id 1234 [--message "My request message"]
 ```
 
+#### Accept a join space request
+
+```sh
+ribose join-space accept --request-id 2468
+```
+
 ### Note
 
 #### Listing space notes

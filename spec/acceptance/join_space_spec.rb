@@ -24,6 +24,17 @@ RSpec.describe "Join Space Request" do
     end
   end
 
+  describe "accept" do
+    it "allows a user to accept a join space request" do
+      command = %w(join-space accept --request-id 2468)
+
+      stub_ribose_join_space_request_update(2468, state: 1)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/Join space request has been accepted!/)
+    end
+  end
+
   # This prepares the request body to match with wbmock's expected
   # one to successfully stub  `POST /invitations/join_space_request`
   #

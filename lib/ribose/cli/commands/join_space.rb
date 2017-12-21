@@ -23,6 +23,14 @@ module Ribose
           say("Something went wrong! Please check required attributes")
         end
 
+        desc "accept", "Accept a join space request"
+        option :request_id, required: true, aliases: "-r", desc: "Request UUID"
+
+        def accept
+          Ribose::JoinSpaceRequest.accept(options[:request_id])
+          say("Join space request has been accepted!")
+        end
+
         private
 
         def create_join_request(attributes)
