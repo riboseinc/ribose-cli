@@ -10,6 +10,16 @@ module Ribose
           say(build_output(list_files(options), options))
         end
 
+        desc "show", "Details for a space file"
+        option :file_id, required: true, desc: "The space file ID"
+        option :format, aliases: "-f", desc: "Output format, eg: json"
+        option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
+
+        def show
+          file = Ribose::SpaceFile.fetch(options[:space_id], options[:file_id])
+          say(build_resource_output(file, options))
+        end
+
         desc "add", "Adding a new fille to a space"
         option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
         option :description, aliases: "-d", desc: "The file upload description"
@@ -40,6 +50,10 @@ module Ribose
 
         def table_headers
           ["ID", "Name", "Versions"]
+        end
+
+        def table_field_names
+          %w(id name author content_type content_size version)
         end
 
         def table_rows(files)

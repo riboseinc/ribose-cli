@@ -241,6 +241,12 @@ ribose file list --space-id 123456
 The above interface will retrieve the basic details in tabular format, but it
 also support additional `format` option, acceptable option: `json`.
 
+#### Fetch a file details
+
+```sh
+ribose file show --file-id 5678 --space-id 1234 [--format json]
+```
+
 #### Add a new file
 
 Ribose CLI allows us to upload a file in a user space, and to upload a new file
