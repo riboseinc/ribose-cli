@@ -37,6 +37,17 @@ RSpec.describe "File Interface" do
     end
   end
 
+  describe "remove" do
+    it "removes a file from a user space" do
+      command = %w(file remove --file-id 5678 --space-id 1234)
+
+      stub_ribose_space_file_delete_api(1234, 5678)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/The file has been removed from your space!/)
+    end
+  end
+
   def file_attributes
     { file: sample_fixture, description: "", tag_list: "" }
   end

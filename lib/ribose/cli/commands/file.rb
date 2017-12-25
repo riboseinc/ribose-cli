@@ -33,6 +33,15 @@ module Ribose
           end
         end
 
+        desc "remove", "Remove a space file"
+        option :file_id, required: true, aliases: "-f", desc: "Space file ID"
+        option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
+
+        def remove
+          Ribose::SpaceFile.delete(options[:space_id], options[:file_id])
+          say("The file has been removed from your space!")
+        end
+
         private
 
         def list_files(attributes)

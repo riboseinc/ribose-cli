@@ -256,6 +256,12 @@ we can use the following interface.
 ribose file add full_path_the_file.ext  --space-id space_uuid **other_options
 ```
 
+#### Remove a space file
+
+```sh
+ribose file remove --file-id 5678 --space-id 1234
+```
+
 ### Conversations
 
 #### Listing conversations
