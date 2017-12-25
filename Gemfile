@@ -4,4 +4,4 @@ source "https://rubygems.org"
 gemspec
 
 # Temporarily use the development version
-gem "ribose", github: "riboseinc/ribose-ruby", ref: "3e1df36"
+gem "ribose", github: "riboseinc/ribose-ruby", ref: "9b7f256"

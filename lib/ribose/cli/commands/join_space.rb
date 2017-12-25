@@ -10,6 +10,15 @@ module Ribose
           say(build_output(Ribose::JoinSpaceRequest.all(options), options))
         end
 
+        desc "show", "Fetch a join space request"
+        option :format, aliases: "-f", desc: "Output format, eg: json"
+        option :request_id, required: true, aliases: "-r", desc: "Request UUID"
+
+        def show
+          join_space = Ribose::JoinSpaceRequest.fetch(options[:request_id])
+          say(build_resource_output(join_space, options))
+        end
+
         desc "add", "Create a join space request"
         option :type, aliases: "-t", desc: "The join request type"
         option :state, desc: "The state for the join space request"
@@ -52,6 +61,10 @@ module Ribose
 
         def table_headers
           ["ID", "Inviter", "Type", "Space Name"]
+        end
+
+        def table_field_names
+          %w(id email body state type)
         end
 
         def table_rows(requests)

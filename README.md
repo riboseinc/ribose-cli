@@ -171,6 +171,12 @@ ribose invitation remove --invitation-id 2468
 ribose join-space list [--query=space-id:2468]
 ```
 
+#### Fetch a join space request
+
+```sh
+ribose join-space show --request-id 2468
+```
+
 #### Add join space request
 
 ```sh

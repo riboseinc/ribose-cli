@@ -13,6 +13,19 @@ RSpec.describe "Join Space Request" do
     end
   end
 
+  describe "show" do
+    it "retrieves the details for a join reqeust" do
+      command = %w(join-space show --request-id 2468)
+
+      stub_ribose_join_space_request_fetch_api(2468)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/state | 0/)
+      expect(output).to match(/id    | 123456789/)
+      expect(output).to match(/type  | Invitation::ToSpace/)
+    end
+  end
+
   describe "add" do
     it "creates a new join space request" do
       command = %w(join-space add --space-id 1234)
