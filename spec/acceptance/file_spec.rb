@@ -37,6 +37,24 @@ RSpec.describe "File Interface" do
     end
   end
 
+  describe "update" do
+    it "updates details for a space file" do
+      command = %W(
+        file update
+        --file-id 5678
+        --space-id 1234
+        --tags #{update_attributes[:tags]}
+        --file-name #{update_attributes[:file_name]}
+        --description #{update_attributes[:description]}
+      )
+
+      stub_ribose_space_file_update_api(1234, 5678, update_attributes)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      expect(output).to match(/The file has been updated with new attributes/)
+    end
+  end
+
   describe "remove" do
     it "removes a file from a user space" do
       command = %w(file remove --file-id 5678 --space-id 1234)
@@ -50,6 +68,10 @@ RSpec.describe "File Interface" do
 
   def file_attributes
     { file: sample_fixture, description: "", tag_list: "" }
+  end
+
+  def update_attributes
+    { tags: "one, two", file_name: "new name", description: "New description" }
   end
 
   def sample_fixture

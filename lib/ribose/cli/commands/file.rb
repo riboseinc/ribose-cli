@@ -33,6 +33,20 @@ module Ribose
           end
         end
 
+        desc "update", "Update a space file"
+        option :file_name, aliases: "-n", desc: "New name for the file"
+        option :description, aliases: "-d", desc: "New description for file"
+        option :tags, aliases: "-t", desc: "File tags, separated by commas"
+        option :file_id, required: true, aliases: "-f", desc: "Space file ID"
+        option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
+
+        def update
+          update_file(symbolize_keys(options))
+          say("The file has been updated with new attributes")
+        rescue Ribose::UnprocessableEntity
+          say("Something went wrong! Please check required attributes")
+        end
+
         desc "remove", "Remove a space file"
         option :file_id, required: true, aliases: "-f", desc: "Space file ID"
         option :space_id, required: true, aliases: "-s", desc: "The Space UUID"
@@ -54,6 +68,14 @@ module Ribose
             file: file,
             tag_list: attributes[:tag_list],
             description: attributes[:description],
+          )
+        end
+
+        def update_file(attributes)
+          Ribose::SpaceFile.update(
+            attributes.delete(:space_id),
+            attributes.delete(:file_id),
+            attributes,
           )
         end
 
