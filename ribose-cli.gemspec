@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.executables   = "ribose"
 
   spec.add_dependency "thor", "~> 0.19.4"
-  spec.add_dependency "ribose", "~> 0.2.0"
+  spec.add_dependency "ribose", ">= 0.3.0"
   spec.add_dependency "terminal-table"
 
   spec.add_development_dependency "bundler", "~> 1.14"
