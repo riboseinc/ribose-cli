@@ -13,6 +13,15 @@ RSpec.describe "Conversation Messages" do
     end
   end
 
+  describe "show message" do
+    it "retrieves the details for a message" do
+      command = %w(message show -s 1234 -c 5678 -m 90123)
+      output = capture_stdout { Ribose::CLI.start(command) }
+
+      puts output
+    end
+  end
+
   describe "Adding new message" do
     it "allows us to add message to a conversation" do
       command = %W(

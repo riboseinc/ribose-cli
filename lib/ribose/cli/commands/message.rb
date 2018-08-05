@@ -11,6 +11,16 @@ module Ribose
           say(build_output(list_messages, options))
         end
 
+        desc "show", "Show details for a message"
+        option :conversation_id, aliases: "-c", required: true
+        option :format, aliases: "-f", desc: "Output format, eg: json"
+        option :message_id, aliases: "-m", required: true, desc: "Message UUID"
+        option :space_id, aliases: "-s", required: true, desc: "The Space UUD"
+
+        def show
+          say(build_resource_output(message(options), options))
+        end
+
         desc "add", "Add New Message to Conversation"
         option :message_body, required: true, aliases: "-b"
         option :conversation_id, aliases: "-c", required: true
@@ -46,6 +56,9 @@ module Ribose
 
         private
 
+        def message(options)
+          # The endpoint is pending as of now 
+        end
         def list_messages
           @messages ||= Ribose::Message.all(
             space_id: options[:space_id],
