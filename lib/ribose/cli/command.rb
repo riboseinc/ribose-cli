@@ -37,12 +37,15 @@ module Ribose
       subcommand :join_space, Ribose::CLI::Commands::JoinSpace
 
       desc "config", "Configure API Key and User Email"
-      option :token, required: true, desc: "Your API Token for Ribose"
+      option :token, required: false, desc: "Your API Token for Ribose"
       option :email, required: true, desc: "Your email address for Ribose"
+      option :password, required: true, desc: "Your API password for Ribose"
 
       def config
         Ribose::CLI::RCFile.set(
-          email: options[:email], token: options[:token],
+          token: options[:token],
+          email: options[:email],
+          password: options[:password],
         )
       end
 

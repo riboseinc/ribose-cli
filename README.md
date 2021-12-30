@@ -1,7 +1,6 @@
 # Ribose CLI
 
-[![Build
-Status](https://travis-ci.org/riboseinc/ribose-cli.svg?branch=master)](https://travis-ci.org/riboseinc/ribose-cli)
+[![Build Status](https://github.com/riboseinc/ribose-cli/actions/workflows/test.yml/badge.svg)](https://github.com/riboseinc/ribose-cli/actions/workflows/test.yml)
 [![Code
 Climate](https://codeclimate.com/github/riboseinc/ribose-cli/badges/gpa.svg)](https://codeclimate.com/github/riboseinc/ribose-cli)
 
@@ -36,7 +35,7 @@ API Token and email using the following interface, This will store your Ribose
 configuration as `.riboserc` in the home directory.
 
 ```sh
-ribose config --token="YOUR_API_TOKEN" --email="youremail@example.com"
+ribose config --password="YOUR_API_PASSWORD" --email="youremail@example.com"
 ```
 
 ### Spaces
