@@ -25,7 +25,7 @@ module Ribose
         option :access, default: "open", desc: "The visiblity for the space"
 
         def add
-          space = Ribose::Space.create(symbolize_keys(options))
+          space = Ribose::Space.create(**symbolize_keys(options))
           say("New Space created! Id: " + space.id)
         end
 
