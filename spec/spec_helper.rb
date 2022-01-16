@@ -15,6 +15,7 @@ RSpec.configure do |config|
 
   config.before :all do
     Ribose.configure do |ribose_config|
+      ribose_config.api_host = ENV["RIBOSE_API_HOST"] || "www.ribose.com"
       ribose_config.user_email = ENV["RIBOSE_USER_EMAIL"] || "user@ribose.com"
       ribose_config.user_password = ENV["RIBOSE_USER_PASSWORD"] || "SECRET_PASS"
 

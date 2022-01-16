@@ -32,6 +32,10 @@ module Ribose
         new.data[:user_password]
       end
 
+      def self.api_host
+        ENV.fetch("RIBOSE_API_HOST", new.data[:api_host])
+      end
+
       def self.set(email:, password:, token: nil)
         new.set(token: token, email: email, password: password)
       end

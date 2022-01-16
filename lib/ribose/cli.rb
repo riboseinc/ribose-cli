@@ -9,12 +9,13 @@ require "ribose/cli/command"
 module Ribose
   module CLI
     def self.start(arguments)
+      Ribose.configuration.debug_mode = true
       Ribose::CLI::Command.start(arguments)
-    rescue Ribose::Errors::Forbidden
+    rescue Ribose::Unauthorized, Ribose::Errors::Forbidden
       Thor::Shell::Basic.new.say(
         "Invalid: Missing API Configuration\n\n" \
         "Ribose API Token & Email are required for any of the CLI operation\n" \
-        "You can set your API Key using `ribose config --token "" --email "" `",
+        "You can set your API Key using `ribose config --email email --password`",
       )
     end
   end
