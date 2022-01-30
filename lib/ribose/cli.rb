@@ -9,7 +9,6 @@ require "ribose/cli/command"
 module Ribose
   module CLI
     def self.start(arguments)
-      Ribose.configuration.debug_mode = true
       Ribose::CLI::Command.start(arguments)
     rescue Ribose::Unauthorized, Ribose::Errors::Forbidden
       Thor::Shell::Basic.new.say(

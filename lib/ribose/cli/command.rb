@@ -40,12 +40,14 @@ module Ribose
       option :token, required: false, desc: "Your API Token for Ribose"
       option :email, required: true, desc: "Your email address for Ribose"
       option :password, required: true, desc: "Your API password for Ribose"
+      option :api_host, required: true, desc: "API host, eg: www.ribose.com"
 
       def config
         Ribose::CLI::RCFile.set(
           token: options[:token],
           email: options[:email],
           password: options[:password],
+          api_host: options[:api_host],
         )
       end
 

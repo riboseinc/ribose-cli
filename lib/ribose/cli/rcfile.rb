@@ -12,10 +12,11 @@ module Ribose
         @data = load_configuration
       end
 
-      def set(email:, password:, token: nil)
+      def set(email:, password:, token: nil, api_host: nil)
         data[:api_token] = token
         data[:user_email] = email
         data[:user_password] = password
+        data[:api_host] = api_host
 
         write_api_details_to_file
       end
@@ -36,8 +37,8 @@ module Ribose
         ENV.fetch("RIBOSE_API_HOST", new.data[:api_host])
       end
 
-      def self.set(email:, password:, token: nil)
-        new.set(token: token, email: email, password: password)
+      def self.set(email:, password:, token: nil, api_host: nil)
+        new.set(token: token, email: email, password: password, api_host: api_host)
       end
 
       private

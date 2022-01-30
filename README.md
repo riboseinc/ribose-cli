@@ -35,7 +35,7 @@ API Token and email using the following interface, This will store your Ribose
 configuration as `.riboserc` in the home directory.
 
 ```sh
-ribose config --password="YOUR_API_PASSWORD" --email="youremail@example.com"
+ribose config --password='YOUR_API_PASSWORD' --email='youremail@example.com'
 ```
 
 ### Spaces

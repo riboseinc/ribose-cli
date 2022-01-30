@@ -17,6 +17,7 @@ Gem::Specification.new do |spec|
 
   spec.files         = `git ls-files`.split("\n")
   spec.test_files    = `git ls-files -- {spec}/*`.split("\n")
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
 
   spec.require_paths = ["lib"]
   spec.bindir        = "bin"
